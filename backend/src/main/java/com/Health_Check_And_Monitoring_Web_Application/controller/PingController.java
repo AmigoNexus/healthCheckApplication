@@ -11,7 +11,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "${cors.allowed-origin:http://localhost:5173}")
 public class PingController {
 
     @Autowired
