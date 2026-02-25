@@ -12,6 +12,7 @@ public class SchedulerConfig {
         ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
         scheduler.setPoolSize(10);
         scheduler.setThreadNamePrefix("health-check-");
+        scheduler.setWaitForTasksToCompleteOnShutdown(true);
         scheduler.initialize();
         return scheduler;
     }

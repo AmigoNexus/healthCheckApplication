@@ -290,7 +290,7 @@ function PingCard({ ping: p, formatDateTime }) {
         <div className="space-y-2 pt-3 border-t border-gray-300 border-opacity-40">
           <div className="flex justify-between items-center text-xs">
             <span className={`font-medium ${isUp ? "text-green-700" : "text-red-700"}`}>Response Time</span>
-            <span className={`font-semibold ${isUp ? "text-green-900" : "text-red-900"}`}>${p.responseTime ?? "N/A"} ms</span>
+            <span className={`font-semibold ${isUp ? "text-green-900" : "text-red-900"}`}> {p.responseTime ?? "N/A"} ms</span>
           </div>
           <div className="flex justify-between items-center text-xs">
             <span className={`font-medium ${isUp ? "text-green-700" : "text-red-700"}`}>Checked At</span>

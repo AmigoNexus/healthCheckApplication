@@ -1,6 +1,8 @@
 package com.Health_Check_And_Monitoring_Web_Application.controller;
 
 import com.Health_Check_And_Monitoring_Web_Application.model.ServiceEntity;
+import com.Health_Check_And_Monitoring_Web_Application.model.ServiceStatusHistoryEntity;
+import com.Health_Check_And_Monitoring_Web_Application.repository.ServiceStatusHistoryRepository;
 import com.Health_Check_And_Monitoring_Web_Application.service.HealthCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,8 @@ public class HealthCheckServiceController {
 
     @Autowired
     private HealthCheckService healthService;
+    @Autowired
+    private ServiceStatusHistoryRepository historyRepo;
 
     @GetMapping("/status/all")
     public ResponseEntity<List<ServiceEntity>> getAllStatuses() {
@@ -36,5 +40,13 @@ public class HealthCheckServiceController {
     public ResponseEntity<Void> deleteService(@PathVariable Long id) {
         healthService.deleteService(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/history/{serviceId}")
+    public ResponseEntity<List<ServiceStatusHistoryEntity>> getHistory(
+            @PathVariable Long serviceId) {
+
+        return ResponseEntity.ok(
+                historyRepo.findAllByServiceIdOrderByEventTimeDesc(serviceId)
+        );
     }
 }
